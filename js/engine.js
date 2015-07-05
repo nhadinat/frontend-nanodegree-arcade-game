@@ -40,13 +40,13 @@ var Engine = (function(global) {
          * computer is) - hurray time!
          */
         var now = Date.now(),
-            dt = (now - lastTime) / 1000.0;
+            dt = (now - lastTime) / 1000.0; // div1000 to get seconds
 
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
          */
-        update(dt);
-        render();
+        update(dt); //change positions
+        render(); //draw positions
 
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
@@ -83,7 +83,7 @@ var Engine = (function(global) {
         // checkCollisions();
     }
 
-    /* This is called by the update function  and loops through all of the
+    /* This is called by the update function and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
      * their update() methods. It will then call the update function for your
      * player object. These update methods should focus purely on updating
