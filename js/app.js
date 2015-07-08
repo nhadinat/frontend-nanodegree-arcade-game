@@ -13,14 +13,13 @@ var Enemy = function(x,y) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+    // Multiply movement by the dt parameter which will ensure the game
+    // runs at the same speed for all computers.
+    this.x = this.x + (dt * 100);
 
-    this.x = this.x + (dt * 50);
-
+    // Rerun the enemies
     if (this.x > 600) {
-        this.x = 0;
+        this.x = -100;
     }
 
 //    console.log(this.x);
@@ -82,9 +81,9 @@ Player.prototype.handleInput = function (input) {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-var enemy = new Enemy(0,1),
-    enemy2 = new Enemy(0,2),
-    enemy3 = new Enemy(0,3),
+var enemy = new Enemy(-1,1),
+    enemy2 = new Enemy(-1,2),
+    enemy3 = new Enemy(-1,3),
     allEnemies = [];
 
 // Add enemies into array
