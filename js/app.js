@@ -18,6 +18,12 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 
     this.x = this.x + (dt * 50);
+
+    if (this.x > 600) {
+        this.x = 0;
+    }
+
+//    console.log(this.x);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -37,7 +43,20 @@ var Player = function(x,y) {
 };
 
 Player.prototype.update = function() {
-    // movement will be by key inputs
+    // Make player reset if x or y is at a certain point
+    if (this.x < 0) {
+        this.x = 0;
+    }
+    if (this.x > 4) {
+        this.x = 4;
+    }
+    if (this.y < 1) {
+        this.x = 2;
+        this.y = 5;
+    }
+    if (this.y > 5) {
+        this.y = 5;
+    }
 };
 
 // Draw the player on the screen, using the required method for game
@@ -46,6 +65,7 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function (input) {
+    // Gather key inputs and assign them to change x or y coordinates
     if (input === 'left') {
         this.x = this.x - 1;
     }
