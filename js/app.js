@@ -45,11 +45,8 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function (allowedKeys[e.keyCode]) {
-    left = x - 1;
-    up = y + 1;
-    right = x + 1;
-    down = y - 1;
+Player.prototype.handleInput = function () {
+
 }
 
 
