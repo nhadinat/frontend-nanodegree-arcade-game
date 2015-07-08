@@ -43,34 +43,41 @@ Player.prototype.update = function() {
 // Draw the player on the screen, using the required method for game
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
-    //ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
 };
 
-Player.prototype.handleInput = function () {
-    /*left = x - 1;
-    up = y + 1;
-    right = x + 1;
-    down = y - 1; */
+Player.prototype.handleInput = function (input) {
+    if (input === 'left') {
+        this.x = this.x - 1;
+    }
+    if (input === 'up') {
+        this.y = this.y - 1;
+    }
+    if (input === 'right') {
+        this.x = this.x + 1;
+    }
+    if (input === 'down') {
+        this.y = this.y + 1;
+    }
 }
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-
 var enemy = new Enemy(0,1),
     enemy2 = new Enemy(0,2),
     enemy3 = new Enemy(0,3),
     allEnemies = [];
 
+// Add enemies into array
 allEnemies.push(enemy, enemy2, enemy3);
 
+// Place the player object in a variable called player
 var player = new Player(2,5);
 
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keydown', function(e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
