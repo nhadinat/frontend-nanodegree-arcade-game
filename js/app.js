@@ -15,11 +15,11 @@ var Enemy = function(x,y) {
 Enemy.prototype.update = function(dt) {
     // Multiply movement by the dt parameter which will ensure the game
     // runs at the same speed for all computers.
-    this.x = this.x + (dt * 100);
+    this.x = this.x + (dt * 2);
 
     // Rerun the enemies
-    if (this.x > 600) {
-        this.x = -100;
+    if (this.x > 6) {
+        this.x = -1;
     }
 
 //    console.log(this.x);
@@ -27,7 +27,7 @@ Enemy.prototype.update = function(dt) {
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y * 83 - 25);
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83 - 25);
 };
 
 // Now write your own player class
