@@ -15,10 +15,10 @@ var Enemy = function(x,y) {
 Enemy.prototype.update = function(dt) {
     // Multiply movement by the dt parameter which will ensure the game
     // runs at the same speed for all computers.
-    this.x = this.x + (dt * 2);
+    this.x = this.x + (dt * this.speed);
 
     // Rerun the enemies
-    if (this.x > 6) {
+    if (this.x > 8) {
         this.x = -1;
     }
 
@@ -42,18 +42,19 @@ var Player = function(x,y) {
 };
 
 Player.prototype.update = function() {
-    // Make player reset if x or y is at a certain point
+    // Limit the player's movement at the borders
     if (this.x < 0) {
         this.x = 0;
     }
     if (this.x > 4) {
         this.x = 4;
     }
-    if (this.y < 1) {
-        this.x = 2;
+    if (this.y > 5) {
         this.y = 5;
     }
-    if (this.y > 5) {
+    // Reset the player if she jumps in the water
+    if (this.y < 1) {
+        this.x = 2;
         this.y = 5;
     }
 };
@@ -84,10 +85,22 @@ Player.prototype.handleInput = function (input) {
 var enemy = new Enemy(-1,1),
     enemy2 = new Enemy(-1,2),
     enemy3 = new Enemy(-1,3),
+    enemy4 = new Enemy(-3,1),
+    enemy5 = new Enemy(-3,2),
+    enemy6 = new Enemy(-3,3),
     allEnemies = [];
 
+    // Assign speeds to enemies
+    enemy.speed = 2.5;
+    enemy2.speed = 3.3;
+    enemy3.speed = 1.2;
+    enemy4.speed = 1.7;
+    enemy5.speed = 0.7;
+    enemy6.speed = 2.7;
+
+
 // Add enemies into array
-allEnemies.push(enemy, enemy2, enemy3);
+allEnemies.push(enemy, enemy2, enemy3, enemy4, enemy5, enemy6);
 
 // Place the player object in a variable called player
 var player = new Player(2,5);

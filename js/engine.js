@@ -80,7 +80,21 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
+    }
+
+    /* This function checks for collisions by checking if bounding boxes
+     * collide.
+     */
+    function checkCollisions() {
+        if (enemy.x < player.x + player.width &&
+            enemy.x + enemy.width > player.x &&
+            enemy.y < player.y + player.height &&
+            enemy.height + enemy.y > player.y) {
+            player.x = 2;
+            player.y = 5;
+            console.log(enemy.x);
+        }
     }
 
     /* This is called by the update function and loops through all of the
