@@ -80,20 +80,32 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        checkCollisions();
     }
+
 
     /* This function checks for collisions by checking if bounding boxes
      * collide.
      */
-    function checkCollisions() {
-        if (enemy.x < player.x + player.width &&
-            enemy.x + enemy.width > player.x &&
-            enemy.y < player.y + player.height &&
-            enemy.height + enemy.y > player.y) {
+    function checkCollisions(enemy, player) {
+
+        // Detect enemy hitbox values, subtracting "air" around the sprite
+        enemy.left = enemy.x * 101 - 50;
+        enemy.top = enemy.y * 83 - 125;
+        enemy.right = Resources.get(enemy.sprite).width - 50 + enemy.left;
+        enemy.bottom = Resources.get(enemy.sprite).height - 125 + enemy.top;
+
+        // Detect player hitbox values, subtracting "air" around the sprite
+        player.left = player.x * 101 - 50;
+        player.top = player.y * 83 - 125;
+        player.right = Resources.get(player.sprite).width - 50 + player.left;
+        player.bottom = Resources.get(player.sprite).height - 125 + player.top;
+
+        if (enemy.left < player.right &&
+            enemy.right > player.left &&
+            enemy.top < player.bottom &&
+            enemy.bottom > player.top) {
             player.x = 2;
             player.y = 5;
-            console.log(enemy.x);
         }
     }
 
@@ -107,6 +119,7 @@ var Engine = (function(global) {
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
+            checkCollisions(enemy, player);
         });
         player.update();
     }

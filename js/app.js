@@ -6,6 +6,7 @@ var Enemy = function(x,y) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    // Position the enemy
     this.x = x; // x coord
     this.y = y; // y coord
 };
@@ -16,13 +17,10 @@ Enemy.prototype.update = function(dt) {
     // Multiply movement by the dt parameter which will ensure the game
     // runs at the same speed for all computers.
     this.x = this.x + (dt * this.speed);
-
     // Rerun the enemies
     if (this.x > 8) {
         this.x = -1;
     }
-
-//    console.log(this.x);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -37,6 +35,7 @@ Enemy.prototype.render = function() {
 var Player = function(x,y) {
     // assign image to Player
     this.sprite = 'images/char-princess-girl.png';
+    // Position the player
     this.x = x; // x coord
     this.y = y; // y coord
 };
@@ -61,7 +60,7 @@ Player.prototype.update = function() {
 
 // Draw the player on the screen, using the required method for game
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83 - 30);
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83 - 25);
 };
 
 Player.prototype.handleInput = function (input) {
@@ -80,27 +79,23 @@ Player.prototype.handleInput = function (input) {
     }
 }
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-var enemy = new Enemy(-1,1),
-    enemy2 = new Enemy(-1,2),
-    enemy3 = new Enemy(-1,3),
-    enemy4 = new Enemy(-3,1),
-    enemy5 = new Enemy(-3,2),
-    enemy6 = new Enemy(-3,3),
-    allEnemies = [];
-
-    // Assign speeds to enemies
+// Now instantiate your objects, and add speed values to enemies
+var enemy = new Enemy(-1,1);
     enemy.speed = 2.5;
+var enemy2 = new Enemy(-1,2);
     enemy2.speed = 3.3;
+var enemy3 = new Enemy(-1,3);
     enemy3.speed = 1.2;
+var enemy4 = new Enemy(-3,1);
     enemy4.speed = 1.7;
+var enemy5 = new Enemy(-3,2);
     enemy5.speed = 0.7;
+var enemy6 = new Enemy(-3,3);
     enemy6.speed = 2.7;
 
-
-// Add enemies into array
-allEnemies.push(enemy, enemy2, enemy3, enemy4, enemy5, enemy6);
+// Place all enemy objects in an array called allEnemies
+var allEnemies = [];
+    allEnemies.push(enemy, enemy2, enemy3, enemy4, enemy5, enemy6);
 
 // Place the player object in a variable called player
 var player = new Player(2,5);
