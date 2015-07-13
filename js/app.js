@@ -51,12 +51,12 @@ Player.prototype.update = function() {
     if (this.y > 5) {
         this.y = 5;
     }
-    // Success! Move sprite back to start if player
-    // sucessfully jumps in the water.
+    // Move sprite back to start if player successfully jumps in the water.
     // TODO: add point system
     if (this.y < 1) {
         this.x = 2;
         this.y = 5;
+        //points(1);
     }
 };
 
@@ -66,7 +66,7 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(input) {
-    // Gather key inputs and assign them to change x or y coordinates
+    // Gather key inputs and assign them to change player x or y coordinates
     if (input === 'left') {
         this.x = this.x - 1;
     }
@@ -79,7 +79,7 @@ Player.prototype.handleInput = function(input) {
     if (input === 'down') {
         this.y = this.y + 1;
     }
-}
+};
 
 // Now instantiate your objects, and add speed values to enemies
 var enemy = new Enemy(-1,1);

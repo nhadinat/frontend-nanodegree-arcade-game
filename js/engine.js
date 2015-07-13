@@ -57,7 +57,7 @@ var Engine = (function(global) {
          * function again as soon as the browser is able to draw another frame.
          */
         win.requestAnimationFrame(main);
-    };
+    }
 
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
@@ -190,7 +190,26 @@ var Engine = (function(global) {
     function reset() {
         player.x = 2;
         player.y = 5;
+        // TODO: Play the splash screen
+        //splashScreen();
     }
+
+/*    function splashScreen() {
+        // Add splash screen text to tell player how to begin
+        var splashText = 'Press up arrow key to begin!';
+
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 3;
+        ctx.fillStyle = "white";
+        ctx.font = "36pt Impact";
+        ctx.textAlign = "center";
+
+        if (player.handleInput() !== 'up') {
+          ctx.strokeText(splashText, canvas.width / 2, canvas.height / 2);
+          ctx.fillText(splashText, canvas.width / 2, canvas.height / 2);
+        }
+    }
+*/
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
