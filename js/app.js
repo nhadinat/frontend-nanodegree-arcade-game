@@ -51,7 +51,9 @@ Player.prototype.update = function() {
     if (this.y > 5) {
         this.y = 5;
     }
-    // Reset the player if she jumps in the water
+    // Success! Move sprite back to start if player
+    // sucessfully jumps in the water.
+    // TODO: add point system
     if (this.y < 1) {
         this.x = 2;
         this.y = 5;
@@ -63,7 +65,7 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83 - 25);
 };
 
-Player.prototype.handleInput = function (input) {
+Player.prototype.handleInput = function(input) {
     // Gather key inputs and assign them to change x or y coordinates
     if (input === 'left') {
         this.x = this.x - 1;

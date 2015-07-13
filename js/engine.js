@@ -100,12 +100,13 @@ var Engine = (function(global) {
         player.right = Resources.get(player.sprite).width - 50 + player.left;
         player.bottom = Resources.get(player.sprite).height - 125 + player.top;
 
+        // Define the hitbox limits and trigger if all conditions apply
         if (enemy.left < player.right &&
             enemy.right > player.left &&
             enemy.top < player.bottom &&
             enemy.bottom > player.top) {
-            player.x = 2;
-            player.y = 5;
+            // Game over, put player back to start
+            reset();
         }
     }
 
@@ -119,6 +120,7 @@ var Engine = (function(global) {
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
+            // Add collision detection after each enemy update
             checkCollisions(enemy, player);
         });
         player.update();
@@ -163,7 +165,6 @@ var Engine = (function(global) {
             }
         }
 
-
         renderEntities();
     }
 
@@ -187,7 +188,8 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        player.x = 2;
+        player.y = 5;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
