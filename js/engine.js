@@ -29,6 +29,10 @@ var Engine = (function(global) {
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 3;
+    ctx.fillStyle = 'white';
+
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -185,6 +189,8 @@ var Engine = (function(global) {
         // Add text to the game's canvas
         // Add text to help player begin
         splashScreen();
+        // Add title text to the top of the screen
+        titleText()
     }
 
     /* This function does nothing but it could have been a good place to
@@ -203,15 +209,27 @@ var Engine = (function(global) {
         // Add splash screen text to tell player how to begin
         var splashText = 'Press an arrow key to begin!';
 
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 3;
-        ctx.fillStyle = 'white';
         ctx.font = "1em 'Press Start 2P'";
         ctx.textAlign = 'center';
 
         if (player.x === 2 && player.y === 5) {
           ctx.strokeText(splashText, canvas.width / 2, canvas.height - 175);
           ctx.fillText(splashText, canvas.width / 2, canvas.height - 175);
+        }
+    }
+
+    /* This function adds title text and points feedback
+     */
+    function titleText() {
+        // Add splash screen text to tell player how to begin
+        var splashText = 'Princess Froggy';
+
+        ctx.font = "1em 'Press Start 2P'";
+        ctx.textAlign = 'left';
+
+        if (player.x === 2 && player.y === 5) {
+          ctx.strokeText(splashText, 10, 30);
+          ctx.fillText(splashText, 10, 30);
         }
     }
 
