@@ -6,7 +6,7 @@
  * A game engine works by drawing the entire game screen over and over, kind of
  * like a flipbook you may have created as a kid. When your player moves across
  * the screen, it may look like just that image/character is moving or being
- * drawn but that is not the case. What's really happening is the entire "scene"
+ * drawn but that is not the case. What's really happening is the entire 'scene'
  * is being drawn over and over, presenting the illusion of animation.
  *
  * This engine is available globally via the Engine variable and it also makes
@@ -88,13 +88,13 @@ var Engine = (function(global) {
      */
     function checkCollisions(enemy, player) {
 
-        // Detect enemy hitbox values, subtracting "air" around the sprite
+        // Detect enemy hitbox values, subtracting 'air' around the sprite
         enemy.left = enemy.x * 101 - 50;
         enemy.top = enemy.y * 83 - 125;
         enemy.right = Resources.get(enemy.sprite).width - 50 + enemy.left;
         enemy.bottom = Resources.get(enemy.sprite).height - 125 + enemy.top;
 
-        // Detect player hitbox values, subtracting "air" around the sprite
+        // Detect player hitbox values, subtracting 'air' around the sprite
         player.left = player.x * 101 - 50;
         player.top = player.y * 83 - 125;
         player.right = Resources.get(player.sprite).width - 50 + player.left;
@@ -126,7 +126,7 @@ var Engine = (function(global) {
         player.update();
     }
 
-    /* This function initially draws the "game level", it will then call
+    /* This function initially draws the 'game level', it will then call
      * the renderEntities function. Remember, this function is called every
      * game tick (or loop of the game engine) because that's how games work -
      * they are flipbooks creating the illusion of animation but in reality
@@ -150,7 +150,7 @@ var Engine = (function(global) {
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
-         * portion of the "grid"
+         * portion of the 'grid'
          */
         for (row = 0; row < numRows; row++) {
             for (col = 0; col < numCols; col++) {
@@ -181,6 +181,10 @@ var Engine = (function(global) {
         });
 
         player.render();
+
+        // Add text to the game's canvas
+        // Add text to help player begin
+        splashScreen();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -190,26 +194,26 @@ var Engine = (function(global) {
     function reset() {
         player.x = 2;
         player.y = 5;
-        // TODO: Play the splash screen
-        //splashScreen();
     }
 
-/*    function splashScreen() {
+    /* This function serves as a player starting point. It gives some help text
+     * on how to begin.
+     */
+    function splashScreen() {
         // Add splash screen text to tell player how to begin
-        var splashText = 'Press up arrow key to begin!';
+        var splashText = 'Press an arrow key to begin!';
 
-        ctx.strokeStyle = "black";
+        ctx.strokeStyle = 'black';
         ctx.lineWidth = 3;
-        ctx.fillStyle = "white";
-        ctx.font = "36pt Impact";
-        ctx.textAlign = "center";
+        ctx.fillStyle = 'white';
+        ctx.font = "1em 'Press Start 2P'";
+        ctx.textAlign = 'center';
 
-        if (player.handleInput() !== 'up') {
-          ctx.strokeText(splashText, canvas.width / 2, canvas.height / 2);
-          ctx.fillText(splashText, canvas.width / 2, canvas.height / 2);
+        if (player.x === 2 && player.y === 5) {
+          ctx.strokeText(splashText, canvas.width / 2, canvas.height - 175);
+          ctx.fillText(splashText, canvas.width / 2, canvas.height - 175);
         }
     }
-*/
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
