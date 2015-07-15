@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(x,y) {
+var Enemy = function(x,y,v) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -7,8 +7,9 @@ var Enemy = function(x,y) {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     // Position the enemy
-    this.x = x; // x coord
-    this.y = y; // y coord
+    this.x = x; // x coord of enemy
+    this.y = y; // y coord of enemy
+    this.v = v; // velocity of enemy
 };
 
 // Update the enemy's position, required method for game
@@ -16,7 +17,7 @@ var Enemy = function(x,y) {
 Enemy.prototype.update = function(dt) {
     // Multiply movement by the dt parameter which will ensure the game
     // runs at the same speed for all computers.
-    this.x = this.x + (dt * this.speed);
+    this.x = this.x + (dt * this.v);
     // Rerun the enemies
     if (this.x > 8) {
         this.x = -1;
@@ -29,8 +30,8 @@ Enemy.prototype.render = function() {
 };
 
 // Create subclass Greenemy
-var Greenemy = function(x,y) {
-    Enemy.call(x,y);
+var Greenemy = function(x,y,v) {
+    Enemy.call(x,y,v);
     this.sprite = 'images/enemy-bug-green.png';
 };
 
@@ -52,8 +53,8 @@ var Player = function(x,y) {
     // assign image to Player
     this.sprite = 'images/char-princess-girl.png';
     // Position the player
-    this.x = x; // x coord
-    this.y = y; // y coord
+    this.x = x; // x coord of player
+    this.y = y; // y coord of player
 };
 
 Player.prototype.update = function() {
@@ -98,23 +99,16 @@ Player.prototype.handleInput = function(input) {
 };
 
 // Now instantiate your objects, and add speed values to enemies
-var enemy = new Enemy(-1,1);
-    enemy.speed = 2.5;
-var enemy2 = new Enemy(-1,2);
-    enemy2.speed = 3.3;
-var enemy3 = new Enemy(-1,3);
-    enemy3.speed = 1.2;
-var enemy4 = new Enemy(-3,1);
-    enemy4.speed = 1.7;
-var enemy5 = new Enemy(-3,2);
-    enemy5.speed = 0.7;
-var enemy6 = new Enemy(-3,3);
-    enemy6.speed = 2.7;
+var enemy = new Enemy(-1,1,2.5),
+    enemy2 = new Enemy(-1,2,3.3),
+    enemy3 = new Enemy(-1,3,1.2),
+    enemy4 = new Enemy(-3,1,1.7),
+    enemy5 = new Enemy(-3,2,0.7),
+    enemy6 = new Enemy(-3,3,2.7);
 
 // Add meany greeny enemy, where Greenemy is a subclass of Enemy,
 // but this guy goes the wrong way on the street
-var greenemy = new Greenemy(6,1);
-    greenemy.speed = -1;
+var greenemy = new Greenemy(6,1,-1);
 
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
