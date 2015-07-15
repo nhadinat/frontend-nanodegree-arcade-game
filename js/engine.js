@@ -190,7 +190,7 @@ var Engine = (function(global) {
         // Add text to help player begin
         splashScreen();
         // Add title text to the top of the screen
-        titleText()
+        pointsText();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -204,33 +204,30 @@ var Engine = (function(global) {
 
     /* This function serves as a player starting point. It gives some help text
      * on how to begin.
+     * TODO: add listener to splashscreen, place f somewhere in init
      */
     function splashScreen() {
-        // Add splash screen text to tell player how to begin
-        var splashText = 'Press an arrow key to begin!';
+        var text = 'Press an arrow key to begin!';
 
         ctx.font = "1em 'Press Start 2P'";
         ctx.textAlign = 'center';
 
         if (player.x === 2 && player.y === 5) {
-          ctx.strokeText(splashText, canvas.width / 2, canvas.height - 175);
-          ctx.fillText(splashText, canvas.width / 2, canvas.height - 175);
+          ctx.strokeText(text, canvas.width / 2, canvas.height - 175);
+          ctx.fillText(text, canvas.width / 2, canvas.height - 175);
         }
     }
 
-    /* This function adds title text and points feedback
+    /* This function adds title level text and TODO: points feedback
      */
-    function titleText() {
-        // Add splash screen text to tell player how to begin
-        var splashText = 'Princess Froggy';
+    function pointsText() {
+        var text = 'Points:';
 
-        ctx.font = "1em 'Press Start 2P'";
+        ctx.font = "0.7em 'Press Start 2P'";
         ctx.textAlign = 'left';
 
-        if (player.x === 2 && player.y === 5) {
-          ctx.strokeText(splashText, 10, 30);
-          ctx.fillText(splashText, 10, 30);
-        }
+        ctx.strokeText(text, 10, 75);
+        ctx.fillText(text, 10, 75);
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -242,6 +239,7 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
+        'images/enemy-bug-green.png',
         'images/char-princess-girl.png'
     ]);
     Resources.onReady(init);

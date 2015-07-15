@@ -28,6 +28,22 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83 - 25);
 };
 
+// Create subclass Greenemy
+var Greenemy = function(x,y) {
+    Enemy.call(x,y);
+    this.sprite = 'images/enemy-bug-green.png';
+};
+
+Greenemy.prototype = Object.create(Enemy.prototype);
+Greenemy.prototype.constructor = Greenemy;
+Greenemy.prototype.update = function(dt) {
+    this.x = this.x + (dt * this.speed);
+    // Rerun the other way
+    if (this.x < -3) {
+        this.x = 10;
+    }
+};
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -95,9 +111,15 @@ var enemy5 = new Enemy(-3,2);
 var enemy6 = new Enemy(-3,3);
     enemy6.speed = 2.7;
 
+// Add meany greeny enemy, where Greenemy is a subclass of Enemy,
+// but this guy goes the wrong way on the street
+var greenemy = new Greenemy(6,1);
+    greenemy.speed = -1;
+
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
-    allEnemies.push(enemy, enemy2, enemy3, enemy4, enemy5, enemy6);
+    allEnemies.push(enemy, enemy2, enemy3, enemy4, enemy5, enemy6,
+        greenemy);
 
 // Place the player object in a variable called player
 var player = new Player(2,5);
