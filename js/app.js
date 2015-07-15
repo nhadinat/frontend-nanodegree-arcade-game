@@ -31,7 +31,7 @@ Enemy.prototype.render = function() {
 
 // Create subclass Greenemy
 var Greenemy = function(x,y,v) {
-    Enemy.call(x,y,v);
+    Enemy.call(this,x,y,v);
     this.sprite = 'images/enemy-bug-green.png';
 };
 
@@ -40,8 +40,8 @@ Greenemy.prototype.constructor = Greenemy;
 Greenemy.prototype.update = function(dt) {
     this.x = this.x + (dt * this.v);
     // Rerun the other way
-    if (this.x < -3) {
-        this.x = 10;
+    if (this.x < -7) {
+        this.x = 12;
     }
 };
 
@@ -108,7 +108,7 @@ var enemy = new Enemy(-1,1,2.5),
 
 // Add meany greeny enemy, where Greenemy is a subclass of Enemy,
 // but this guy goes the wrong way on the street
-var greenemy = new Greenemy(5,1,-1);
+var greenemy = new Greenemy(10,1,-4);
 
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
