@@ -55,6 +55,7 @@ var Player = function(x,y) {
     // Position the player
     this.x = x; // x coord of player
     this.y = y; // y coord of player
+    this.points = 0 // player's points initialized at zero
 };
 
 Player.prototype.update = function() {
@@ -73,7 +74,7 @@ Player.prototype.update = function() {
     if (this.y < 1) {
         this.x = 2;
         this.y = 5;
-        //points(1);
+        this.points = this.points + 1;
     }
 };
 
