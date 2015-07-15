@@ -38,7 +38,7 @@ var Greenemy = function(x,y,v) {
 Greenemy.prototype = Object.create(Enemy.prototype);
 Greenemy.prototype.constructor = Greenemy;
 Greenemy.prototype.update = function(dt) {
-    this.x = this.x + (dt * this.speed);
+    this.x = this.x + (dt * this.v);
     // Rerun the other way
     if (this.x < -3) {
         this.x = 10;
@@ -108,7 +108,7 @@ var enemy = new Enemy(-1,1,2.5),
 
 // Add meany greeny enemy, where Greenemy is a subclass of Enemy,
 // but this guy goes the wrong way on the street
-var greenemy = new Greenemy(6,1,-1);
+var greenemy = new Greenemy(5,1,-1);
 
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
