@@ -189,9 +189,8 @@ var Engine = (function(global) {
         // Add text to the game's canvas
         // Add text to help player begin
         splashScreen();
-        // Add title text to the top of the screen
-        titleText();
-        drawPoints(player.points);
+        // Add title text to the top of the screen, then add points text
+        titleText(player.points);
     }
 
     /* This function does nothing but it could have been a good place to
@@ -199,8 +198,10 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
+        // Reset player's position
         player.x = 2;
         player.y = 5;
+        // Reset player's points
         player.points = 0;
     }
 
@@ -220,29 +221,17 @@ var Engine = (function(global) {
         }
     }
 
-    /* This function adds title level text
+    /* This function adds title level text and the point system
      */
-    function titleText() {
+    function titleText(points) {
         var text = 'Points:';
 
         ctx.font = "0.8em 'Press Start 2P'";
         ctx.textAlign = 'left';
 
-        ctx.strokeText(text, 10, 75);
-        ctx.fillText(text, 10, 75);
+        ctx.strokeText(text + ' ' + points, 10, 75);
+        ctx.fillText(text + ' ' + points, 10, 75);
     }
-
-    function drawPoints(points) {
-        // Set initial value as a zero number
-        var text = points;
-
-        ctx.font = "0.8em 'Press Start 2P'";
-        ctx.textAlign = 'left';
-
-        ctx.strokeText(points, 110, 75);
-        ctx.fillText(points, 110, 75);
-    }
-
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when

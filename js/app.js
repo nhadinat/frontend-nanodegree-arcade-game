@@ -29,14 +29,17 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83 - 25);
 };
 
-// Create subclass Greenemy
+// Create subclass Greenemy based on superclass Enemy
 var Greenemy = function(x,y,v) {
     Enemy.call(this,x,y,v);
     this.sprite = 'images/enemy-bug-green.png';
 };
 
+// Copy Enemy objects, redirect constructor
 Greenemy.prototype = Object.create(Enemy.prototype);
 Greenemy.prototype.constructor = Greenemy;
+
+// Customize the update function for Greenemy
 Greenemy.prototype.update = function(dt) {
     this.x = this.x + (dt * this.v);
     // Rerun the other way
@@ -55,7 +58,7 @@ var Player = function(x,y) {
     // Position the player
     this.x = x; // x coord of player
     this.y = y; // y coord of player
-    this.points = 0 // player's points initialized at zero
+    this.points = 0; // player's points initialized at zero
 };
 
 Player.prototype.update = function() {
@@ -70,11 +73,10 @@ Player.prototype.update = function() {
         this.y = 5;
     }
     // Move sprite back to start if player successfully jumps in the water.
-    // TODO: add point system
     if (this.y < 1) {
         this.x = 2;
         this.y = 5;
-        this.points = this.points + 1;
+        this.points++;
     }
 };
 
@@ -118,7 +120,6 @@ var allEnemies = [];
 
 // Place the player object in a variable called player
 var player = new Player(2,5);
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
