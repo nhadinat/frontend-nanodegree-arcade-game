@@ -1,4 +1,3 @@
-'use strict';
 /* Engine.js
  * This file provides the game loop functionality (update entities and render),
  * draws the initial game board on the screen, and then calls the update and
@@ -14,7 +13,7 @@
  * the canvas' context (ctx) object globally available to make writing app.js
  * a little simpler to work with.
  */
-
+'use strict';
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -88,29 +87,29 @@ var Engine = (function(global) {
     }
 
 
-    /* This function checks for collisions by checking if bounding boxes
-     * collide.
+    /* This algorithm checks for collisions by checking if bounding boxes
+     * of the enemies and player collide.
      */
     function checkCollisions(enemy, player) {
 
-        // Detect enemy hitbox values, subtracting 'air' around the sprite
+        // Detect enemy hitbox values, subtracting 'air' around the sprite.
         enemy.left = enemy.x * 101 - 50;
         enemy.top = enemy.y * 83 - 125;
         enemy.right = Resources.get(enemy.sprite).width - 50 + enemy.left;
         enemy.bottom = Resources.get(enemy.sprite).height - 125 + enemy.top;
 
-        // Detect player hitbox values, subtracting 'air' around the sprite
+        // Detect player hitbox values, subtracting 'air' around the sprite.
         player.left = player.x * 101 - 50;
         player.top = player.y * 83 - 125;
         player.right = Resources.get(player.sprite).width - 50 + player.left;
         player.bottom = Resources.get(player.sprite).height - 125 + player.top;
 
-        // Define the hitbox limits and trigger if all conditions apply
+        // Define the hitbox limits and trigger if all conditions apply.
         if (enemy.left < player.right &&
             enemy.right > player.left &&
             enemy.top < player.bottom &&
             enemy.bottom > player.top) {
-            // Game over, put player back to start
+            // Game over, put player back to start.
             reset();
         }
     }
@@ -187,8 +186,7 @@ var Engine = (function(global) {
 
         player.render();
 
-        // Add text to the game's canvas
-        // Add text to help player begin
+        // Add text to tell player how to begin
         splashScreen();
         // Add title text to the top of the screen, then add points text
         titleText(player.points);
@@ -211,11 +209,12 @@ var Engine = (function(global) {
      * TODO: add listener to splashscreen, place f somewhere in init
      */
     function splashScreen() {
+        // Add written content here
         var text = 'Press an arrow key to begin!';
-
+        // Style font here
         ctx.font = "1em 'Press Start 2P'";
         ctx.textAlign = 'center';
-
+        // Render here
         if (player.x === 2 && player.y === 5) {
           ctx.strokeText(text, canvas.width / 2, canvas.height - 175);
           ctx.fillText(text, canvas.width / 2, canvas.height - 175);
@@ -225,11 +224,12 @@ var Engine = (function(global) {
     /* This function adds title level text and the point system
      */
     function titleText(points) {
+        // Add written content here
         var text = 'Points:';
-
+        // Style font here
         ctx.font = "0.8em 'Press Start 2P'";
         ctx.textAlign = 'left';
-
+        // Render here
         ctx.strokeText(text + ' ' + points, 10, 75);
         ctx.fillText(text + ' ' + points, 10, 75);
     }
@@ -243,8 +243,8 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/enemy-bug-green.png',
-        'images/char-princess-girl.png'
+        'images/enemy-bug-green.png', // Add new green bug 'Greenemy'
+        'images/char-princess-girl.png' // Change to princess, looks cooler
     ]);
     Resources.onReady(init);
 
